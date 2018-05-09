@@ -1,0 +1,44 @@
+Sysrepo Callback Function generator for YANG Model Leafs
+--------------------------------------------------------
+
+Directory structure:
+---------------------
+
+YangLeafCBFunc/
+├── h                        <- Generated Header files will be placed here
+├── libs                     <- Generated Callback library will be placed here
+├── Makefile
+├── obj                      <- Generated OBJ Files will be placed here
+├── README
+├── src
+│   └── sample_app.c
+└── utils                    <- Utilities for generating callback files
+    ├── genXpath
+    └── yangCCallBackGen
+
+
+
+Pre-Requisites:
+---------------
+Before generating and compiling the source, please make sure following libraries are installed on your server
+
+1) libsysrepo
+2) libredblack
+3) libev
+4) libprotobuf-c
+5) libyang
+
+Once all the libraries are installed, please install the respective YANG model in sysrepo data store using below command.
+
+sysrepoctl --install --yang=<your_model>.yang
+
+
+Compilation:
+------------
+
+If the installation is successful, proceed with source code generation and compilation of sample_app.c as below:
+
+1)  cd YangLeafCBFunc
+2)  vi Makefile # Edit Makefile by replacing sample_moduleconfig with your own YANG module installed in sysrepo and save-exit.
+3)  make gen    # This will generate header and source files for callback functions
+4)  make all    # This will compile and generate callback library and sample_app.c
